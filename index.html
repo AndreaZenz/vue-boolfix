@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/v-flag-icons"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/v-flag-icons/css/rectangular.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
@@ -18,11 +21,20 @@
             <li v-for="element in mergedList">
                 <p>{{element.title}}</p>
                 <p v-if="element.title !== element.original_title">{{element.original_title}}</p>
-                <p>Lingua originale "{{element.original_language}}"</p>
-                <p>voto</p>
+                <p>
+                    Lingua originale - "{{element.original_language}}" 
+                    <template v-if='element.original_language != "en"'>
+                    <vf-icon :country="element.original_language"/> 
+                    </template>
+                    <template v-else>
+                    <vf-icon country="gb"/>
+                    </template>
+                </p>
+
+                
+                <p>Voto - {{element.vote_average}}</p>
             </li>
         </ul>
     </div>
     <script src="app.js"></script>
 </body>
-</html>
