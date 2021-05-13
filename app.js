@@ -1,10 +1,11 @@
 new Vue({
     el: "#app",
     data: {
-        textToSearch: "",
+        textToSearch: "ritorno al futuro",
         tmdbApiKey: "06638f66f1ef819d29fa1ce03c883c04",
         moviesList: [],
         tvSeriesList: [],
+        mergedList:[],
     },
     methods: {
         makeAxiosSearch(searchType){
@@ -24,7 +25,6 @@ new Vue({
                     this.tvSeriesList = resp.data.results.map((tvShow) => {
                         tvShow.original_title = tvShow.original_name
                         tvShow.title = tvShow.name
-                        
                         return tvShow
                     });
                 }
@@ -42,6 +42,7 @@ new Vue({
             */
             this.makeAxiosSearch("movie")
             this.makeAxiosSearch("tv")
+            this.mergedList = this.moviesList.concat(this.tvSeriesList)
         }
-    }
+    },
 })

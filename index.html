@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css
-    "></script>
     <title>Document</title>
 </head>
 <body>
@@ -17,10 +15,10 @@
             <button @click="doSearch">Cerca</button>
         </div>
         <ul>
-            <li>
-                <p>titolo</p>
-                <p>titolo originale</p>
-                <p>lingua</p>
+            <li v-for="element in mergedList">
+                <p>{{element.title}}</p>
+                <p v-if="element.title !== element.original_title">{{element.original_title}}</p>
+                <p>Lingua originale "{{element.original_language}}"</p>
                 <p>voto</p>
             </li>
         </ul>
