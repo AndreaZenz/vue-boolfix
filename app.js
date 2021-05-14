@@ -32,12 +32,25 @@ new Vue({
                 }
             });
         },
-        voteStar() {
+        fullVoteStar(rating) {
             //in questa funzione voglio passargli la chiave presa dall'api che rappresenta il voto this.vote_avarage e transformarlo in un numero da 1 a 5
-            this.mergedList.forEach(element => {
-                const vote = this.mergedList.element.vote_avarage
-                vote.Math(this.mergedList.element.vote_avarage = vote).ceil
-            })
+            let vote = Math.ceil(rating / 2);
+            const stars = [];
+            for (let i = 1; i <= vote; i++) {
+                // if (i<= vote){
+                    stars.push(1)
+                // }
+            }
+            return stars;
+        },
+        emptyVoteStar(rating){
+            let vote = Math.ceil(rating / 2);
+            const stars = [];
+            for (let i = vote; i < 5; i++) {
+                stars.push(1)
+            }
+            return stars;
+
         },
         doSearch() {
             /*
@@ -52,7 +65,6 @@ new Vue({
             this.makeAxiosSearch("movie");
             this.makeAxiosSearch("tv");
             this.mergedList = this.moviesList.concat(this.tvSeriesList);
-            this.voteStar();
         },
     },
 });

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,12 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/v-flag-icons"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/v-flag-icons/css/rectangular.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
     <div id="app">
         <div>
@@ -22,20 +25,25 @@
                 <p>{{element.title}}</p>
                 <p v-if="element.title !== element.original_title">{{element.original_title}}</p>
                 <p>
-                    Lingua originale - "{{element.original_language}}" 
+                    Lingua originale - "{{element.original_language}}"
                     <template v-if='element.original_language != "en"'>
-                    <vf-icon :country="element.original_language"/> 
+                        <vf-icon :country="element.original_language" />
                     </template>
                     <template v-else>
-                    <vf-icon country="gb"/>
+                        <vf-icon country="gb" />
                     </template>
                 </p>
                 <div>
                     <img :src="urlImg + element.poster_path" alt="">
                 </div>
 
-                
-                <p>Voto - {{element.vote_average}}</p>
+
+                <p>
+                    Voto - {{element.vote_average}}
+                </p>
+                <i v-for="stars in fullVoteStar(element.vote_average)" class="fa fa-star stellina" aria-hidden="true"></i><i class="fa fa-star-o stellina" aria-hidden="true" v-for="stars in emptyVoteStar(element.vote_average)"></i>
+
+
             </li>
         </ul>
     </div>
