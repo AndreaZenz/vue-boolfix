@@ -2,12 +2,12 @@ Vue.use(vFlagIcons);
 new Vue({
     el: "#app",
     data: {
-        textToSearch: "ritorno al futuro",
+        textToSearch: "",
         tmdbApiKey: "06638f66f1ef819d29fa1ce03c883c04",
         moviesList: [],
         tvSeriesList: [],
         mergedList: [],
-        urlImg: "https://image.tmdb.org/t/p/w154"
+        urlImg: "https://image.tmdb.org/t/p/w342"
     },
     methods: {
         makeAxiosSearch(searchType) {
@@ -31,6 +31,13 @@ new Vue({
                     });
                 }
             });
+        },
+        getImages: function(element) {
+            if(element.poster_path != null) {
+                return 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + element.poster_path;
+            }
+
+            return 'img/empty-image.jpg';
         },
         fullVoteStar(rating) {
             //in questa funzione voglio passargli la chiave presa dall'api che rappresenta il voto this.vote_avarage e transformarlo in un numero da 1 a 5
